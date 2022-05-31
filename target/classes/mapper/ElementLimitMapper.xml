@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.ElementLimitMapper">
+
+    <resultMap id="LimitResultMap" type="com.wang.entity.ElementLimit">
+        <result column="limitName" jdbcType="VARCHAR" property="limitName" />
+        <result column="element" jdbcType="VARCHAR" property="element" />
+        <result column="minContain" jdbcType="DOUBLE" property="minContain" />
+        <result column="maxContain" jdbcType="DOUBLE" property="maxContain" />
+        <result column="comments" jdbcType="VARCHAR" property="comments" />
+    </resultMap>
+
+    <sql id="Limit_Column_List">
+        limitName,element,minContain,maxContain,comments
+    </sql>
+
+    <select id="selectAllLimit" resultMap="LimitResultMap">
+        select
+        <include refid="Limit_Column_List" />
+        from peiwu.elementLimit;
+    </select>
+
+    <insert id="addLimit" parameterType="com.wang.entity.ElementLimit">
+        insert into peiwu.elementLimit (limitName,element,minContain,maxContain,comments)
+        values (#{limitName},#{element},#{minContain},#{maxContain},#{comments});
+    </insert>
+
+    <select id="queryLimitByElement" parameterType="String" resultMap="LimitResultMap">
+        select *
+        from peiwu.elementLimit
+        where element = #{element};
+    </select>
+
+</mapper>

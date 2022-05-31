@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        div#pieChart {
+            width: 47.5%;
+            height: 600px;
+            background-color: blanchedalmond;
+            float: left;
+        }
+
+        div#barChart {
+            width: 47.5%;
+            height: 600px;
+            background-color: #b3d7ff;
+            float: left;
+            margin-left: 5%;
+        }
+    </style>
+</head>
+<header th:replace="header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- 引入页面头header-fragment -->
+    <div th:replace="header::header-nav"></div>
+    <!-- 引入工具栏sidebar-fragment -->
+    <div th:replace="sidebar::sidebar-fragment(${path})"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid"></div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- Main content -->
+        <div class="content">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">仓储集中展示界面test</h3>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-body">
+                    <div class="panel panel-default">
+                        <div style="padding: 10px 0 20px 10px">
+                            <div id="pieChart">饼图</div><div id="barChart">柱状图</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- 引入页脚footer-fragment -->
+    <div th:replace="footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script
+        th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"
+></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+
+<script th:src="@{/admin/dist/js/echarts.min.js}"></script>
+
+<script>
+    var mPieCharts = echarts.init(document.getElementById('pieChart'));
+    // pieData为设置给饼图的数据，它是一个数组，每一个数组中又包含一个对象
+    var pieNameAll = [];//物料种类
+    var pieDataAll = [];//物料数量
+
+    $.ajax({
+        type : "post",
+        async : true, //异步请求
+        url : "/echarts/getJsonPie",
+        data : {},
+        dataType : "json",
+        success : function (result2){
+            if (result2.status2) {
+                var list = result2.list2;
+                for (var i = 0; i < list.length; i++) {
+                    pieNameAll.push(list[i].month);    //遍历月份并填入数组
+                }
+                for (var i = 0; i < list.length; i++) {
+                    pieDataAll.push(list[i].precipitation);    //遍历蒸发量并填入数组
+                }
+                mPieCharts.setOption({
+
+                    title: {
+                        text: "危险废弃物库存占比",
+                        // subtext: "单位：km/h",
+                        left: "center",
+                        top: "10%",
+                        textStyle: {
+                            color: "brown",
+                            fontSize: "40",
+                        },
+                        subtextStyle: {
+                            color: "orange",
+                            fontSize: "20",
+                        },
+                    },
+                    series: [
+                        {
+                            type: "pie",
+                            data: [
+                                {
+                                    name: pieNameAll[0],
+                                    value: pieDataAll[0],
+                                },
+                                {
+                                    name: pieNameAll[1],
+                                    value: pieDataAll[1],
+                                },
+                                {
+                                    name: pieNameAll[2],
+                                    value: pieDataAll[2],
+                                },
+                                {
+                                    name: pieNameAll[3],
+                                    value: pieDataAll[3],
+                                },
+                                {
+                                    name: pieNameAll[4],
+                                    value: pieDataAll[4],
+                                },
+                                {
+                                    name: pieNameAll[5],
+                                    value: pieDataAll[5],
+                                },
+                                {
+                                    name: pieNameAll[6],
+                                    value: pieDataAll[6],
+                                },
+                            ],
+                            label: {
+                                // 饼图文字的显示
+                                // 显示文字
+                                show: true,
+                                color: "orange",
+                                fontSize: "15",
+                                // 决定文字显示的内容的回调函数
+                                formatter: function (arg) {
+                                    return arg.name + "含量为 " + arg.percent + "%";
+                                },
+                            },
+                            // 设置饼图的半径
+                            // radius: 20,
+                            // 百分比参照的是高度和宽度中较小的那一部分的一半来进行百分比设置
+                            // radius: "50%",
+                            // 第0个元素为内圆半径，第1个元素为外圆半径
+                            radius: ["10%", "50%"],
+
+                            // 南丁格尔图，饼图的每个区域的半径不同
+                            roseType: "radius",
+
+                            // 选中的效果，能够将选中的区域偏离远点一小段距离
+                            // 仅有一块偏离
+                            selectedMode: "single",
+                            // 有多块可以偏离
+                            // selectedMode: "multiple",
+                            // 设置偏离距离
+                            selectedOffset: 15,
+                        },
+                    ],
+
+                })
+            }
+        },
+        error : function(errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            mPieCharts.hideLoading();
+        }
+    })
+</script>
+
+<script>
+    var mCharts = echarts.init(document.getElementById('barChart'));
+    var months=[];//用来盛放X轴坐标值：物料种类
+    var evapCapacitys=[];//用来盛放Y坐标值：平均热值
+    var precipitations=[];//用来盛放Y坐标值：总重量
+
+    $.ajax({
+        type : "post",
+        async : true, //异步请求
+        url : "/echarts/getJson",
+        data : {},
+        dataType : "json",
+        success : function (result){
+            if (result.status) {
+                var list = result.list;
+                for (var i = 0; i < list.length; i++) {
+                    months.push(list[i].month);    //遍历物料种类并填入数组
+                }
+                for (var i = 0; i < list.length; i++) {
+                    evapCapacitys.push(list[i].evapCapacity);    //遍历平均热值并填入数组
+                }
+                for (var i = 0; i < list.length; i++) {
+                    precipitations.push(list[i].precipitation);    //遍历总重量并填入数组
+                }
+                mCharts.setOption({
+                    legend: {
+                        // 图例, 图例中的data数据来源于series中每个对象的name, 图例可以帮助我们对图表进行筛选
+                        data: ["碳值", "重量"],
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}, // 导出图片
+                            dataView: {}, // 数据视图
+                            restore: {}, // 重置
+                            dataZoom: {}, // 区域缩放
+                            magicType: {
+                                type: ["bar", "line"],
+                            }, // 动态图表类型的切换
+                        },
+                    },
+                    xAxis: {
+                        data: months
+                    },
+                    yAxis: {},
+                    series: [
+                        {
+                            name: "碳值",
+                            type: "bar",
+                            data: evapCapacitys,
+                            barWidth: "25%",
+                        },
+                        {
+                            name: "重量",
+                            type: "bar",
+                            data: precipitations,
+                            barWidth: "25%",
+                        },
+                    ],
+
+                })
+            }
+        },
+        error : function(errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            mCharts.hideLoading();
+        }
+    })
+</script>
+
+</body>
+</html>

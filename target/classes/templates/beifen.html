@@ -1,0 +1,82 @@
+<!--&lt;!&ndash; Copyright (c) 2019-2020 十三 all rights reserved. &ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<header th:replace="header::header-fragment"></header>-->
+<!--<body class="hold-transition sidebar-mini">-->
+<!--<div class="wrapper">-->
+<!--  &lt;!&ndash; 引入页面头header-fragment &ndash;&gt;-->
+<!--  <div th:replace="header::header-nav"></div>-->
+<!--  &lt;!&ndash; 引入工具栏sidebar-fragment &ndash;&gt;-->
+<!--  <div th:replace="sidebar::sidebar-fragment(${path})"></div>-->
+<!--  &lt;!&ndash; Content Wrapper. Contains page content &ndash;&gt;-->
+<!--  <div class="content-wrapper">-->
+<!--    &lt;!&ndash; Content Header (Page header) &ndash;&gt;-->
+<!--    <div class="content-header">-->
+<!--      <div class="container-fluid">-->
+<!--      </div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; Main content &ndash;&gt;-->
+<!--    <div class="content">-->
+<!--      <div class="card card-primary card-outline">-->
+<!--        <div class="card-header">-->
+<!--          <h3 class="card-title">库存管理界面</h3>-->
+<!--        </div> &lt;!&ndash; /.card-body &ndash;&gt;-->
+<!--        <div class="card-body">-->
+<!--          <div class="grid-btn">-->
+<!--            <button class="btn btn-info" onclick="addGoods()"><i-->
+<!--                    class="fa fa-plus"></i>&nbsp;添加废料-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <form th:action="@{/admin/queryWaste}">-->
+<!--            <input type="text" name="queryWasteName" class="form-control" placeholder="请输入要查询的废料名称">-->
+<!--            <input type="submit" value="查询" class="btn btn-primary">-->
+<!--          </form>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-12">-->
+<!--              <table border="2" align="center">-->
+<!--                <tr>-->
+<!--                  <td>废料编号</td>-->
+<!--                  <td>废料名称</td>-->
+<!--                  <td>来源公司</td>-->
+<!--                  <td>入库时间</td>-->
+<!--                  <td>处理设备</td>-->
+<!--                  <td>重量</td>-->
+<!--                  <td>热值</td>-->
+<!--                  <td>硫含量</td>-->
+<!--                  <td>磷含量</td>-->
+<!--                  <td>含水量</td>-->
+<!--                  <td>碳含量</td>-->
+<!--                </tr>-->
+<!--                <tr th:each="r:${repo}">-->
+<!--                  <td th:text="${r.wasteID}"></td>-->
+<!--                  <td th:text="${r.wasteName}"></td>-->
+<!--                  <td th:text="${r.resourceCompany}"></td>-->
+<!--                  <td th:text="${r.repoTime}"></td>-->
+<!--                  <td th:text="${r.solveEquipment}"></td>-->
+<!--                  <td th:text="${r.weight}"></td>-->
+<!--                  <td th:text="${r.heatValue}"></td>-->
+<!--                  <td th:text="${r.s}"></td>-->
+<!--                  <td th:text="${r.p}"></td>-->
+<!--                  <td th:text="${r.ho2}"></td>-->
+<!--                  <td th:text="${r.c}"></td>-->
+<!--                </tr>-->
+<!--              </table>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>&lt;!&ndash; /.container-fluid &ndash;&gt;-->
+<!--    </div>-->
+<!--    &lt;!&ndash; /.content &ndash;&gt;-->
+<!--  </div>-->
+<!--  &lt;!&ndash; /.content-wrapper &ndash;&gt;-->
+<!--  &lt;!&ndash; 引入页脚footer-fragment &ndash;&gt;-->
+<!--  <div th:replace="footer::footer-fragment"></div>-->
+<!--</div>-->
+<!--&lt;!&ndash; jQuery &ndash;&gt;-->
+<!--<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>-->
+<!--&lt;!&ndash; Bootstrap 4 &ndash;&gt;-->
+<!--<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>-->
+<!--&lt;!&ndash; AdminLTE App &ndash;&gt;-->
+<!--<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>-->
+<!--</body>-->
+<!--</html>-->

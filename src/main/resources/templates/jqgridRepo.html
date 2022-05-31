@@ -1,0 +1,61 @@
+<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="header::header-fragment">
+</header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- 引入页面头header-fragment -->
+  <div th:replace="header::header-nav"></div>
+  <!-- 引入工具栏sidebar-fragment -->
+  <div th:replace="sidebar::sidebar-fragment(${path})"></div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <div class="content">
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h3 class="card-title">库存管理界面2</h3>
+        </div> <!-- /.card-body -->
+              <div class="card-body">
+                <div class="grid-btn">
+                  <button class="btn btn-info" onclick="jqgridAddGoods()"><i
+                          class="fa fa-plus"></i>&nbsp;添加废料
+                  </button>
+                  <button class="btn btn-info" onclick="editGoods()"><i
+                          class="fa fa-pencil-square-o"></i>&nbsp;修改废料
+                  </button>
+                  <button class="btn btn-success" onclick="deleteGoods()"><i
+                          class="fa fa-arrow-up"></i>&nbsp;删除废料
+                  </button>
+                  <button class="btn btn-success" onclick="testGoods()"><i
+                          class="fa fa-arrow-up"></i>&nbsp;测试
+                  </button>
+                </div>
+                <form th:action="@{/admin/jqgridqueryWaste}">
+                  <input type="text" name="wasteName" class="form-control" placeholder="请输入要查询的废料名称">
+                  <input type="submit" value="查询" class="btn btn-primary">
+                </form>
+                  <table id="jqGrid" class="table table-bordered">
+                  </table>
+                  <div id="jqGridPager"></div>
+              </div><!-- /.card-body -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- 引入页脚footer-fragment -->
+  <div th:replace="footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/admin/plugins/jqgrid-5.5.2/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/admin/plugins/jqgrid-5.5.2/grid.locale-cn.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<script th:src="@{/admin/dist/js/newbee_mall_goods.js}"></script>
+</body>
+</html>

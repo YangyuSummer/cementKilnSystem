@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.RepositoryMapper">
+    <resultMap id="RepoResultMap" type="com.wang.entity.Repository">
+        <result column="wasteID" jdbcType="VARCHAR" property="wasteID" />
+        <result column="wasteName" jdbcType="VARCHAR" property="wasteName" />
+        <result column="resourceCompany" jdbcType="VARCHAR" property="resourceCompany" />
+        <result column="repoTime" jdbcType="DATE" property="repoTime" />
+        <result column="solveEquipment" jdbcType="VARCHAR" property="solveEquipment" />
+        <result column="weight" jdbcType="INTEGER" property="weight" />
+        <result column="heatValue" jdbcType="INTEGER" property="heatValue" />
+        <result column="s" jdbcType="FLOAT" property="s" />
+        <result column="p" jdbcType="FLOAT" property="p" />
+        <result column="ho2" jdbcType="FLOAT" property="ho2" />
+        <result column="c" jdbcType="FLOAT" property="c" />
+    </resultMap>
+    <sql id="Repo_Column_List">
+        wasteID, wasteName, resourceCompany, repoTime, solveEquipment,weight,heatValue,s,p,ho2,c
+    </sql>
+
+    <select id="selectAll" resultMap="RepoResultMap">
+        select
+        <include refid="Repo_Column_List" />
+        from peiwu.repository
+    </select>
+    
+    <insert id="addWaste" parameterType="com.wang.entity.Repository">
+        insert into peiwu.repository (wasteID, wasteName, resourceCompany, repoTime, solveEquipment,weight,heatValue,s,p,ho2,c)
+        values (#{wasteID},#{wasteName},#{resourceCompany}, #{repoTime}, #{solveEquipment},#{weight},#{heatValue},#{s},#{p},#{ho2},#{c});
+    </insert>
+
+    <delete id="deleteWasteByID" parameterType="String">
+        delete
+        from peiwu.repository
+        where wasteID = #{wasteID};
+    </delete>
+    
+    <update id="updateWasteByID" parameterType="com.wang.entity.Repository">
+        update peiwu.repository
+        set wasteName = #{wasteName} ,resourceCompany = #{resourceCompany},repoTime = #{repoTime},solveEquipment = #{solveEquipment},
+            weight = #{weight},heatValue = #{heatValue},s = #{s},p = #{p},ho2 = #{ho2},c=#{c}
+        where wasteID = #{wasteID};
+    </update>
+
+    <select id="queryWasteByID" parameterType="String" resultMap="RepoResultMap">
+        select *
+        from peiwu.repository
+        where wasteID = #{wasteID};
+    </select>
+
+    <select id="queryWasteByName" parameterType="String" resultMap="RepoResultMap">
+        select *
+        from peiwu.repository
+        where wasteName = #{wasteName};
+    </select>
+
+    <select id="queryWasteByEquipment" parameterType="String" resultMap="RepoResultMap">
+        select *
+        from peiwu.repository
+        where solveEquipment = #{solveEquipment};
+    </select>
+    
+    <select id="selectPage" parameterType="Map" resultMap="RepoResultMap">
+        select *
+        from peiwu.repository
+        <if test="start!=null and limit!=null">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="getTotalRepo" parameterType="Map" resultType="int">
+        select count(*)
+        from peiwu.repository;
+    </select>
+    
+    <select id="getRepoByGroup" resultMap="RepoResultMap">
+        select *
+        from peiwu.repository
+        where wasteID in (
+            <foreach collection="list" item="wasteIDs" separator=",">
+                #{wasteIDs}
+            </foreach>
+            );
+    </select>
+
+</mapper>

@@ -1,0 +1,89 @@
+<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- 引入页面头header-fragment -->
+  <div th:replace="header::header-nav"></div>
+  <!-- 引入工具栏sidebar-fragment -->
+  <div th:replace="sidebar::sidebar-fragment(${path})"></div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- Main content -->
+    <div class="content">
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h3 class="card-title">废料编辑详情</h3>
+        </div> <!-- /.card-body -->
+        <div class="card-body">
+          <div class="panel panel-default">
+            <div style="padding: 10px 0 20px 10px;">
+              <form th:action="@{/admin/jqgridEditWaste}">
+                <input th:value="${jqWaste.wasteID}" name="wasteID" type="hidden">
+                <div class="form-group">
+                  <label>废料名称</label>
+                  <input th:value="${jqWaste.wasteName}" type="text" name="wasteName" class="form-control" placeholder="请输入要添加的废料名称">
+                </div>
+                <div class="form-group">
+                  <label>废料来源</label>
+                  <input th:value="${jqWaste.resourceCompany}" type="text" name="resourceCompany" class="form-control" placeholder="请输入要添加的废料来源">
+                </div>
+                <div class="form-group">
+                  <label>入库时间</label>
+                  <input th:value="${jqWaste.repoTime}" type="text" name="repoTime" class="form-control" placeholder="请输入要添加的废料入库时间">
+                </div>
+                <div class="form-group">
+                  <label>废料处理设备</label>
+                  <input th:value="${jqWaste.solveEquipment}" type="text" name="solveEquipment" class="form-control" placeholder="请输入要添加的废料处理设备">
+                </div>
+                <div class="form-group">
+                  <label>重量</label>
+                  <input th:value="${jqWaste.weight}" type="text" name="weight" class="form-control" placeholder="请输入要添加的废料重量">
+                </div>
+                <div class="form-group">
+                  <label>碳值</label>
+                  <input th:value="${jqWaste.heatValue}" type="text" name="heatValue" class="form-control" placeholder="请输入要添加的废料碳值">
+                </div>
+                <div class="form-group">
+                  <label>硫含量</label>
+                  <input th:value="${jqWaste.s}" type="text" name="s" class="form-control" placeholder="请输入要添加的废料硫含量">
+                </div>
+                <div class="form-group">
+                  <label>磷含量</label>
+                  <input th:value="${jqWaste.p}" type="text" name="p" class="form-control" placeholder="请输入要添加的废料磷含量">
+                </div>
+                <div class="form-group">
+                  <label>含水量</label>
+                  <input th:value="${jqWaste.ho2}" type="text" name="ho2" class="form-control" placeholder="请输入要添加的废料含水量">
+                </div>
+                <div class="form-group">
+                  <label>碳含量</label>
+                  <input th:value="${jqWaste.c}" type="text" name="c" class="form-control" placeholder="请输入要添加的废料碳含量">
+                </div>
+                <input type="submit" value="编辑" class="btn btn-primary">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- 引入页脚footer-fragment -->
+  <div th:replace="footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+    <!-- 引入页面头header-fragment -->
+    <div th:replace="header::header-nav"></div>
+    <!-- 引入工具栏sidebar-fragment -->
+    <div th:replace="sidebar::sidebar-fragment(${path})"></div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- Main content -->
+        <div class="content">
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">废料添加详情</h3>
+                </div> <!-- /.card-body -->
+                <div class="card-body">
+                    <div class="panel panel-default">
+                        <form th:action="@{/admin/addWaste}">
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">废料ID</label>
+                                    <input type="text" name="wasteID" class="form-control" placeholder="请输入要添加的废料ID">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">废料名称</label>
+                                    <input type="text" name="wasteName" class="form-control" placeholder="请输入要添加的废料名称">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">废料来源</label>
+                                    <input type="text" name="resourceCompany" class="form-control" placeholder="请输入要添加的废料来源">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">入库时间</label>
+                                    <input type="text" name="repoTime" class="form-control" placeholder="请输入要添加的废料入库时间">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">处理设备</label>
+                                    <input type="text" name="solveEquipment" class="form-control" placeholder="请输入要添加的废料处理设备">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">重量</label>
+                                    <input type="text" name="weight" class="form-control" placeholder="请输入要添加的废料重量">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">碳值</label>
+                                    <input type="text" name="heatValue" class="form-control" placeholder="请输入要添加的废料碳值">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">硫含量</label>
+                                    <input type="text" name="s" class="form-control" placeholder="请输入要添加的废料硫含量">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">磷含量</label>
+                                    <input type="text" name="p" class="form-control" placeholder="请输入要添加的废料磷含量">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">水含量</label>
+                                    <input type="text" name="ho2" class="form-control" placeholder="请输入要添加的废料含水量">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="mb-2">碳含量</label>
+                                    <input type="text" name="c" class="form-control" placeholder="请输入要添加的废料碳含量">
+                                </div>
+                            </div>
+                            <input type="submit" value="添加" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <!-- 引入页脚footer-fragment -->
+    <div th:replace="footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+</body>
+</html>

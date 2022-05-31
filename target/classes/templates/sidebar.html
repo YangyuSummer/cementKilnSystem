@@ -1,0 +1,130 @@
+<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<aside th:fragment="sidebar-fragment(path)" class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a th:href="@{/admin/index}" class="brand-link">
+        <span class="brand-text font-weight-light">水泥窑协同处置配伍系统</span>
+    </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+                     with font-awesome or any other icon font library -->
+                <li class="nav-header">配伍管理系统</li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/index}" th:class="${path}=='index'?'nav-link active':'nav-link'">
+                        <i class="nav-icon fa fa-dashboard"></i>
+                        <p>
+                            系统简介
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/repository}" th:class="${path}=='repository'?'nav-link active':'nav-link'">
+                        <i class="nav-icon fa fa-plus"></i>
+                        <p>
+                            废料库存管理
+                        </p>
+                    </a>
+                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a th:href="@{/admin/supplement}"-->
+<!--                       th:class="${path}=='supplement'?'nav-link active':'nav-link'">-->
+<!--                        <i class="fa fa-list-alt nav-icon" aria-hidden="true"></i>-->
+<!--                        <p>-->
+<!--                            仓储集中展示test-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li class="nav-item">
+                    <a th:href="@{/admin/monitor}"
+                       th:class="${path}=='monitor'?'nav-link active':'nav-link'">
+                        <i class="nav-icon fa fa-hand-o-up"></i>
+                        <p>
+                            仓储集中展示
+                        </p>
+                    </a>
+                </li>
+
+<!--                <li class="nav-item">-->
+<!--                    <a th:href="@{/admin/jqgridRepository}" th:class="${path}=='jqgridRepository'?'nav-link active':'nav-link'">-->
+<!--                        <i class="nav-icon fa fa-plus"></i>-->
+<!--                        <p>-->
+<!--                            废料库存管理2-->
+<!--                        </p>-->
+<!--                    </a>-->
+<!--                </li>-->
+                <li class="nav-item">
+                    <a th:href="@{/admin/limit}"
+                       th:class="${path}=='limit'?'nav-link active':'nav-link'">
+                        <i class="nav-icon fa fa-file-image-o"></i>
+                        <p>
+                            配伍约束管理
+                        </p>
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item">
+                    <a th:href="@{/admin/maker}"
+                       th:class="${path}=='maker'?'nav-link active':'nav-link'">
+                        <i class="nav-icon fa fa-hand-o-up"></i>
+                        <p>
+                            手动配伍模式
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/autoMaker}"
+                       th:class="${path}=='autoMaker'?'nav-link active':'nav-link'">
+                        <i class="fa fa-list-alt nav-icon" aria-hidden="true"></i>
+                        <p>
+                            自动配伍模式
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/chooseMaker}"
+                       th:class="${path}=='chooseMaker'?'nav-link active':'nav-link'">
+                        <i class="fa fa-list-alt nav-icon" aria-hidden="true"></i>
+                        <p>
+                            综合配伍模式
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/manage}"
+                       th:class="${path}=='manage'?'nav-link active':'nav-link'">
+                        <i class="nav-icon fa fa-hand-o-up"></i>
+                        <p>
+                            配伍方案管理
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">账户信息管理</li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/profile}"
+                       th:class="${path}=='profile'?'nav-link active':'nav-link'">
+                        <i class="fa fa-user-secret nav-icon"></i>
+                        <p>修改密码</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a th:href="@{/admin/logout}" class="nav-link">
+                        <i class="fa fa-sign-out nav-icon"></i>
+                        <p>安全退出</p>
+                    </a>
+                </li>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>
+</html>

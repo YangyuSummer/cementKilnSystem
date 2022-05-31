@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.PlanMapper">
+    <resultMap id="PlanResultMap" type="com.wang.entity.Plan">
+        <result column="planID" jdbcType="VARCHAR" property="planID" />
+        <result column="equipment" jdbcType="VARCHAR" property="equipment" />
+        <result column="proportion" jdbcType="INTEGER" property="proportion" />
+        <result column="heatValueLow" jdbcType="INTEGER" property="heatValueLow" />
+        <result column="heatValueHigh" jdbcType="INTEGER" property="heatValueHigh" />
+        <result column="planIntro" jdbcType="VARCHAR" property="planIntro" />
+    </resultMap>
+    <sql id="Plan_Column_List">
+        planID, equipment, proportion, heatValueLow, heatValueHigh,planIntro
+    </sql>
+
+    <select id="selectAllPlan" resultMap="PlanResultMap">
+        select
+        <include refid="Plan_Column_List" />
+        from peiwu.plan
+    </select>
+
+    <insert id="addPlan" parameterType="com.wang.entity.Plan">
+        insert into peiwu.plan (planID, equipment, proportion, heatValueLow, heatValueHigh,planIntro)
+        values (#{planID},#{equipment},#{proportion},#{heatValueLow},#{heatValueHigh},#{planIntro});
+    </insert>
+
+    <delete id="deletePlanByID" parameterType="String">
+        delete
+        from peiwu.plan
+        where planID = #{planID};
+    </delete>
+
+</mapper>

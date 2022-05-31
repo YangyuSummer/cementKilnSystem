@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.MonitorMapper">
+    <resultMap id="MonitorResultMap" type="com.wang.entity.Repository">
+        <result column="wasteID" jdbcType="VARCHAR" property="wasteID" />
+        <result column="wasteName" jdbcType="VARCHAR" property="wasteName" />
+        <result column="resourceCompany" jdbcType="VARCHAR" property="resourceCompany" />
+        <result column="repoTime" jdbcType="DATE" property="repoTime" />
+        <result column="solveEquipment" jdbcType="VARCHAR" property="solveEquipment" />
+        <result column="weight" jdbcType="INTEGER" property="weight" />
+        <result column="heatValue" jdbcType="INTEGER" property="heatValue" />
+        <result column="s" jdbcType="FLOAT" property="s" />
+        <result column="p" jdbcType="FLOAT" property="p" />
+        <result column="ho2" jdbcType="FLOAT" property="ho2" />
+        <result column="c" jdbcType="FLOAT" property="c" />
+    </resultMap>
+
+    <select id="sumWeightSludge" resultType="int">
+        select sum(weight)
+        from peiwu.repository
+        where wasteName = "污泥";
+    </select>
+
+    <select id="sumWeightIndustry" resultType="int">
+        select sum(weight)
+        from peiwu.repository
+        where wasteName = "工业垃圾";
+    </select>
+
+    <select id="sumWeightPaint" resultType="int">
+        select sum(weight)
+        from peiwu.repository
+        where wasteName = "废漆渣";
+    </select>
+
+    <select id="sumWeightEmulsion" resultType="int">
+        select sum(weight)
+        from peiwu.repository
+        where wasteName = "乳化液";
+    </select>
+
+    <select id="sumWeightOil" resultType="int">
+        select sum(weight)
+        from peiwu.repository
+        where wasteName = "矿物油";
+    </select>
+
+    <select id="sumWeightOrganic" resultType="int">
+        select sum(weight)
+        from peiwu.repository
+        where wasteName = "有机溶剂";
+    </select>
+
+    <select id="sumWeightChemistry" resultType="int">
+        select sum(weight)
+        from peiwu.repository
+        where wasteName = "化学试剂";
+    </select>
+
+
+
+
+
+    <select id="aveHeatValueSludge" resultType="int">
+        select avg(heatValue)
+        from peiwu.repository
+        where wasteName = "污泥";
+    </select>
+
+    <select id="aveHeatValueIndustry" resultType="int">
+        select avg(heatValue)
+        from peiwu.repository
+        where wasteName = "工业垃圾";
+    </select>
+
+    <select id="aveHeatValuePaint" resultType="int">
+        select avg(heatValue)
+        from peiwu.repository
+        where wasteName = "废漆渣";
+    </select>
+
+    <select id="aveHeatValueEmulsion" resultType="int">
+        select avg(heatValue)
+        from peiwu.repository
+        where wasteName = "乳化液";
+    </select>
+
+    <select id="aveHeatValueOil" resultType="int">
+        select avg(heatValue)
+        from peiwu.repository
+        where wasteName = "矿物油";
+    </select>
+
+    <select id="aveHeatValueOrganic" resultType="int">
+        select avg(heatValue)
+        from peiwu.repository
+        where wasteName = "有机溶剂";
+    </select>
+
+    <select id="aveHeatValueChemistry" resultType="int">
+        select avg(heatValue)
+        from peiwu.repository
+        where wasteName = "化学试剂";
+    </select>
+
+</mapper>

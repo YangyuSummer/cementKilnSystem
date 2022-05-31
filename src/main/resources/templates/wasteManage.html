@@ -1,0 +1,76 @@
+<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- 引入页面头header-fragment -->
+  <div th:replace="header::header-nav"></div>
+  <!-- 引入工具栏sidebar-fragment -->
+  <div th:replace="sidebar::sidebar-fragment(${path})"></div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- Main content -->
+    <div class="content">
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h3 class="card-title">配伍方案管理界面</h3>
+        </div> <!-- /.card-body -->
+        <div class="card-body">
+          <form th:action="@{/admin/planQuery}">
+            <input type="text" name="wasteName" class="form-control" placeholder="请输入要查询的方案名称">
+            <input type="submit" value="查询" class="btn btn-primary">
+          </form>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-hover table-striped" border="2" align="center">
+                <tr>
+                  <th>方案编号</th>
+                  <th>处理设备</th>
+                  <th>比例浮动范围</th>
+                  <th>碳值下限</th>
+                  <th>碳值上限</th>
+                  <th>方案备注</th>
+                  <th>操作</th>
+                </tr>+
+                <tr th:each="p:${plan}" >
+                  <td th:text="${p.getPlanID()}" class="waste"></td>
+                  <td th:text="${p.getEquipment()}"></td>
+                  <td th:text="${p.getProportion()}"></td>
+                  <td th:text="${p.getHeatValueLow()}"></td>
+                  <td th:text="${p.getHeatValueHigh()}"></td>
+                  <td th:text="${p.getPlanIntro()}"></td>
+                  <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{/admin/planContent/(planID=${p.planID})}">方案详情</a>
+                    &nbsp;  |  &nbsp;
+                    <a class="btn btn-sm btn-primary" th:href="@{/admin/planExport/(planID=${p.planID})}">方案导出</a>
+                    &nbsp;  |  &nbsp;
+                    <a class="btn btn-sm btn-primary" th:href="@{/admin/deletePlan/(planID=${p.planID})}">删除</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- 引入页脚footer-fragment -->
+  <div th:replace="footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<script th:src="@{/admin/dist/js/repo.js}"></script>
+</body>
+</html>

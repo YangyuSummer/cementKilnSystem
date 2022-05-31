@@ -1,0 +1,72 @@
+<!-- Copyright (c) 2019-2020 十三 all rights reserved. -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:replace="header::header-fragment"></header>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- 引入页面头header-fragment -->
+  <div th:replace="header::header-nav"></div>
+  <!-- 引入工具栏sidebar-fragment -->
+  <div th:replace="sidebar::sidebar-fragment(${path})"></div>
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- Main content -->
+    <div class="content">
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+          <h3 class="card-title">配伍约束管理界面</h3>
+        </div> <!-- /.card-body -->
+        <div class="card-body">
+          <div class="grid-btn">
+            <button class="btn btn-info" onclick="addGoods()"><i
+                    class="fa fa-plus"></i>&nbsp;添加废料约束条件
+            </button>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-hover table-striped" border="2" align="center">
+                <tr>
+                  <th>限制条件名称</th>
+                  <th>限制元素</th>
+                  <th>元素最小值</th>
+                  <th>元素最大值</th>
+                  <th>备注</th>
+                </tr>
+                <tr th:each="l:${limit}" >
+                  <td th:text="${l.getLimitName()}" class="waste"></td>
+                  <td th:text="${l.getElement()}"></td>
+                  <td th:text="${l.getMinContain()}"></td>
+                  <td th:text="${l.getMaxContain()}"></td>
+                  <td th:text="${l.getComments()}"></td>
+                  <td>
+                    <a class="btn btn-sm btn-primary" th:href="@{/admin/toLimitUpdate/(element=${l.getElement()})}">修改</a>
+                    &nbsp;  |  &nbsp;
+                    <a class="btn btn-sm btn-primary" th:href="@{/admin/delete/(wasteID=${l.getElement()})}">删除</a>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <!-- 引入页脚footer-fragment -->
+  <div th:replace="footer::footer-fragment"></div>
+</div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<script th:src="@{/admin/dist/js/repo.js}"></script>
+</body>
+</html>

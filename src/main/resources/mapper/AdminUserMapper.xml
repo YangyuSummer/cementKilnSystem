@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wang.dao.AdminUserMapper">
+    <resultMap id="BaseResultMap" type="com.wang.entity.AdminUser">
+        <id column="userID" jdbcType="INTEGER" property="userID" />
+        <result column="userName" jdbcType="VARCHAR" property="userName" />
+        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
+        <result column="nickName" jdbcType="VARCHAR" property="nickName" />
+        <result column="locked" jdbcType="TINYINT" property="locked" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        userID, userName, passWord, nickName, locked
+    </sql>
+
+    <select id="login" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from peiwu.adminuser
+        where userName = #{userName,jdbcType=VARCHAR} AND passWord=#{passWord,jdbcType=VARCHAR} AND locked = 0
+    </select>
+
+</mapper>
